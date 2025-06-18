@@ -10,7 +10,7 @@ type MarkerType = {
 }
 
 function Inputs({ name, placeholder }: { name: string, placeholder: string }) {
-  const { data, isLoading, isError } = useQuery<MarkerType[]>({
+  const { data } = useQuery<MarkerType[]>({
     queryKey: ['stopNames'],
     queryFn: () =>
       fetch(`${process.env.NEXT_PUBLIC_API}/names`).then((res) => res.json()),

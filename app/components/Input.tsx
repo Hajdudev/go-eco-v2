@@ -1,6 +1,5 @@
 import TanstackProvider from "../lib/query/QueryProvider";
 import InputForm from "./routes/InputForm";
-import Inputs from "./routes/Inputs";
 
 function Input() {
   return (
