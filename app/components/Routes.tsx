@@ -1,7 +1,7 @@
 import { Suspense } from "react";
 import TanstackProvider from "../lib/query/QueryProvider";
 import DynamicRoutes from "./routes/DynamicRoutes";
-import Loader from "../ui/Loader";
+import InfoText from "../ui/InfoText";
 
 
 function Routes() {
@@ -12,7 +12,7 @@ function Routes() {
       </div>
       <div className="w-full flex flex-col gap-1 bg-inputs py-1 px-3 overflow-scroll h-84">
         <TanstackProvider >
-          <Suspense fallback={<Loader />} >
+          <Suspense fallback={<InfoText />} >
             <DynamicRoutes />
           </Suspense>
         </TanstackProvider>

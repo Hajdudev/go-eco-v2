@@ -1,5 +1,6 @@
 "use client"
 
+import InfoText from "@/app/ui/InfoText";
 import { useQuery } from "@tanstack/react-query";
 import { useSearchParams } from "next/navigation";
 
@@ -47,8 +48,9 @@ function DynamicRoutes() {
     },
     enabled: !!from && !!to,
   });
+  if (isPending) return <InfoText />
 
-  if (isLoading || isPending) return <div className="w-full flex justify-center items-center h-4/5 " >
+  if (isLoading) return <div className="w-full flex justify-center items-center h-4/5 " >
 
 
 
