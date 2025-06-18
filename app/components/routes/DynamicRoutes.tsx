@@ -48,9 +48,9 @@ function DynamicRoutes() {
     },
     enabled: !!from && !!to,
   });
-  if (isPending || from === "" && to && "") return <InfoText />
+  if (isPending && from === "" && to == "") return <InfoText />
 
-  if (isLoading || isPending && from != "" && to != "") return <div className="w-full flex justify-center items-center h-4/5 " >
+  if (isLoading && from != "" && to != "") return <div className="w-full flex justify-center items-center h-4/5 " >
 
 
 
