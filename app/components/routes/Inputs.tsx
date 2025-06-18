@@ -45,7 +45,7 @@ function Inputs({ name, placeholder }: { name: string, placeholder: string }) {
       />
       {isClicked && (
         <div className="absolute z-20 bg-inputs text-white rounded-md font-bold text-3xl left-0 w-149">
-          <div className="overflow-y-auto h-40">
+          <div className="overflow-y-auto min-h-15 max-h-40">
             {filteredData && filteredData.length > 0 ? (
               filteredData.map((stop) => (
                 <span
