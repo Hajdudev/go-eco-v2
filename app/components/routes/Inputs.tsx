@@ -25,9 +25,9 @@ function Inputs({ name, placeholder }: { name: string, placeholder: string }) {
   function removeDiacritics(str: string) {
     return str.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
   }
-  const params = useSearchParams();
-  const to = params.get("to")
-  const from = params.get("from")
+  // const params = useSearchParams();
+  // const to = params.get("to")
+  // const from = params.get("from")
 
 
   const filteredData = data?.filter((stop) =>
