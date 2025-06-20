@@ -1,4 +1,5 @@
 "use client"
+import { Suspense } from "react"
 import Inputs from "./Inputs"
 import Form from "next/form"
 
@@ -6,8 +7,12 @@ function InputForm() {
   return (
     <Form action="" className="flex flex-col gap-5 font-mono ">
 
-      <Inputs name="from" placeholder="From stop" />
-      <Inputs name="to" placeholder="To Stop" />
+      <Suspense fallback="loading..." >
+        <Inputs name="from" placeholder="From stop" />
+      </Suspense>
+      <Suspense fallback="loading...">
+        <Inputs name="to" placeholder="To Stop" />
+      </Suspense>
 
       <button
         type="submit"

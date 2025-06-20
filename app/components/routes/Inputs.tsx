@@ -1,6 +1,7 @@
 "use client"
 
 import { useQuery } from "@tanstack/react-query";
+import { useSearchParams } from "next/navigation";
 import { useEffect, useRef, useState } from "react"
 
 type MarkerType = {
@@ -24,6 +25,9 @@ function Inputs({ name, placeholder }: { name: string, placeholder: string }) {
   function removeDiacritics(str: string) {
     return str.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
   }
+  const params = useSearchParams();
+  const to = params.get("to")
+  const from = params.get("from")
 
 
   const filteredData = data?.filter((stop) =>
@@ -31,6 +35,7 @@ function Inputs({ name, placeholder }: { name: string, placeholder: string }) {
       removeDiacritics(inputValue.toLowerCase())
     )
   );
+
 
   useEffect(() => {
     function handleClickOutside(event: MouseEvent) {

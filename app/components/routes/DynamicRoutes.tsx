@@ -55,6 +55,19 @@ function DynamicRoutes() {
 
     const data = await res.json();
 
+    const existingRoutes = localStorage.getItem("recent_routes");
+    let recentRoutes = existingRoutes ? JSON.parse(existingRoutes) : [];
+    const newRoute = [from, to];
+    recentRoutes = recentRoutes.filter((route: string) =>
+      !(route[0] === from && route[1] === to)
+    );
+    recentRoutes.unshift(newRoute);
+    if (recentRoutes.length > 10) {
+      recentRoutes = recentRoutes.slice(0, 10);
+    }
+    localStorage.setItem("recent_routes", JSON.stringify(recentRoutes));
+
+
     return {
       data: data as RouteResult[],
       nextCursor: pageParam + 1,
