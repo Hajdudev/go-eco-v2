@@ -59,7 +59,7 @@ function Inputs({ name, placeholder }: { name: string, placeholder: string }) {
         name={name}
         placeholder={placeholder}
         onClick={() => setIsClicked(true)}
-        className="py-1 outline-none placeholder:text-[#424242] rounded-md text-5xl px-2 text-white bg-inputs"
+        className="py-1 outline-none placeholder:text-[#424242] rounded-md text-2xl md:text-4xl lg:text-5xl px-2 text-white bg-inputs"
         autoComplete="off"
       />
       {isClicked && (
