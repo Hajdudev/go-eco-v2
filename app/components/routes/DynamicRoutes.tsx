@@ -24,6 +24,11 @@ function getMinutes(str: string) {
   const [h, m] = str.split(":").map(Number);
   return h * 60 + m;
 }
+function updateDay(dateString: string, days: number) {
+  const date = new Date(dateString);
+  date.setDate(date.getDate() + days);
+  return date.toISOString().slice(0, 10);
+}
 
 function DynamicRoutes() {
   const searchParams = useSearchParams();
@@ -52,11 +57,9 @@ function DynamicRoutes() {
     enabled: !!from && !!to,
   });
 
-  // Get current time in minutes
   const now = new Date();
   const nowMinutes = now.getHours() * 60 + now.getMinutes();
 
-  // Only show routes with DepartureTime after now
   const filteredRoutes = routeResults
     ? routeResults.filter(route => getMinutes(route.DepartureTime) > nowMinutes)
     : [];
@@ -115,6 +118,8 @@ function DynamicRoutes() {
           </div>
         </div>
       ))}
+      <div className="bg-[#e5e5e5] font-bold text-2xl rounded-md  py-2 px-5 text-[#171717] "
+      >Load Next</div>
     </div>
   );
 }

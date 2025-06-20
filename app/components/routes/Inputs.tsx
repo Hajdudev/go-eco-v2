@@ -1,7 +1,7 @@
 "use client"
 
 import { useQuery } from "@tanstack/react-query";
-import { useRef, useState } from "react"
+import { useEffect, useRef, useState } from "react"
 
 type MarkerType = {
   stop_lat: string;
@@ -10,12 +10,13 @@ type MarkerType = {
 }
 
 function Inputs({ name, placeholder }: { name: string, placeholder: string }) {
+
   const { data } = useQuery<MarkerType[]>({
     queryKey: ['stopNames'],
     queryFn: () =>
       fetch(`${process.env.NEXT_PUBLIC_API}/names`).then((res) => res.json()),
   });
-  const inputRef = useRef(null);
+  const inputRef = useRef<any>(null);
 
   const [inputValue, setInputValue] = useState("");
   const [isClicked, setIsClicked] = useState(false);
@@ -30,6 +31,24 @@ function Inputs({ name, placeholder }: { name: string, placeholder: string }) {
       removeDiacritics(inputValue.toLowerCase())
     )
   );
+
+  useEffect(() => {
+    function handleClickOutside(event: MouseEvent) {
+      if (inputRef.current && !inputRef.current.contains(event.target)) {
+        setTimeout(() => {
+          setIsClicked(false);
+        }, 100);
+      }
+    }
+
+    if (isClicked) {
+      document.addEventListener('mousedown', handleClickOutside);
+    }
+
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, [isClicked, inputRef]);
 
   return (
     <div className="relative ">
