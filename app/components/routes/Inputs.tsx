@@ -16,7 +16,7 @@ function Inputs({ name, placeholder }: { name: string, placeholder: string }) {
     queryFn: () =>
       fetch(`${process.env.NEXT_PUBLIC_API}/names`).then((res) => res.json()),
   });
-  const inputRef = useRef<any>(null);
+  const inputRef = useRef<HTMLInputElement>(null);
 
   const [inputValue, setInputValue] = useState("");
   const [isClicked, setIsClicked] = useState(false);
@@ -34,7 +34,7 @@ function Inputs({ name, placeholder }: { name: string, placeholder: string }) {
 
   useEffect(() => {
     function handleClickOutside(event: MouseEvent) {
-      if (inputRef.current && !inputRef.current.contains(event.target)) {
+      if (inputRef.current && event.target != null && !inputRef.current.contains(event.target as Node)) {
         setTimeout(() => {
           setIsClicked(false);
         }, 100);

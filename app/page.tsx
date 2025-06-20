@@ -1,3 +1,4 @@
+import InitialModal from "./components/InitialModal";
 import Input from "./components/Input";
 import Map from "./components/map/Map";
 import Routes from "./components/Routes";
@@ -14,6 +15,7 @@ export default function Home() {
       <div className="hidden xl:block w-1/2 h-full">
         <Map />
       </div>
+      <InitialModal />
     </div>
   );
 }
